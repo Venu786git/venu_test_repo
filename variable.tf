@@ -1,8 +1,4 @@
-variable "machine_type" {
-  type        = string
-  default     = "e2-small"
-  description = "add your machine type"
-}
+
 
 variable "project_name" {
   type        = string
@@ -10,6 +6,11 @@ variable "project_name" {
   description = "enter your project name"
 }
 
+variable "machine_type" {
+  type        = string
+  default     = "e2-small"
+  description = "add your machine type"
+}
 
 variable "region" {
   type        = string
@@ -24,6 +25,14 @@ variable "zone" {
   description = "zone where to deploy resource"
 }
 
+
+
+variable "data_base_version" {
+  type        = string
+  default     = "MYSQL_5_6" #MYSQL_5_6, MYSQL_5_7, MYSQL_8_0, POSTGRES_9_6,POSTGRES_10, POSTGRES_11, POSTGRES_12, POSTGRES_13, SQLSERVER_2017_STANDARD, SQLSERVER_2017_ENTERPRISE, SQLSERVER_2017_EXPRESS, SQLSERVER_2017_WEB
+  description = "specifies the database version"
+}
+
 variable "minimum_instances" {
   type        = number
   default     = "1"
@@ -36,12 +45,13 @@ variable "maximum_instances" {
   description = "maximum desired instances running at a given point"
 }
 
-variable "data_base_version" {
-  type        = string
-  default     = "MYSQL_5_6" #MYSQL_5_6, MYSQL_5_7, MYSQL_8_0, POSTGRES_9_6,POSTGRES_10, POSTGRES_11, POSTGRES_12, POSTGRES_13, SQLSERVER_2017_STANDARD, SQLSERVER_2017_ENTERPRISE, SQLSERVER_2017_EXPRESS, SQLSERVER_2017_WEB
-  description = "specifies the database version"
-}
 
+
+variable "db_username" {
+  type        = string
+  default     = "pedrobalza"
+  description = "input the database authorized user "
+}
 
 variable "db_password" {
   type        = string
@@ -49,11 +59,13 @@ variable "db_password" {
   description = "description"
 }
 
-variable "db_username" {
+
+variable "db_name" {
   type        = string
-  default     = "pedrobalza"
-  description = "input the database authorized user "
+  default     = "random"
+  description = "description"
 }
+
 
 variable "db_host" {
   type        = string
@@ -62,10 +74,11 @@ variable "db_host" {
   
 }
 
-variable "db_name" {
+
+variable "vpc_subnet_name" {
   type        = string
-  default     = "random"
-  description = "description"
+  default     = "public"
+  description = "name of the vpc subnet being created"
 }
 
 variable "vpc_subnetip_range" {
@@ -74,10 +87,10 @@ variable "vpc_subnetip_range" {
   description = "CIDR range of the VPC being created"
 }
 
-variable "vpc_subnet_name" {
+variable "ASG_name" {
   type        = string
-  default     = "public"
-  description = "name of the vpc subnet being created"
+  default     = "my-autoscaler-team3"
+  description = "desired name for the autoscaling"
 }
 
 variable "vpc_name" {
@@ -86,10 +99,12 @@ variable "vpc_name" {
   description = "desired name of the vpc being created"
 }
 
-variable "ASG_name" {
+
+
+variable "targetpool_name" {
   type        = string
-  default     = "my-autoscaler-team3"
-  description = "desired name for the autoscaling"
+  default     = "my-target-pool"
+  description = "description"
 }
 
 variable "template_name" {
@@ -98,10 +113,10 @@ variable "template_name" {
   description = "desired name for the compute instance template" 
 }
 
-variable "targetpool_name" {
+variable "authorized_networks" {
   type        = string
-  default     = "my-target-pool"
-  description = "description"
+  default     = "0.0.0.0/0"
+  description = "authorized networks ip incoming to the database"
 }
 
 variable "igm_name" {
@@ -110,11 +125,6 @@ variable "igm_name" {
   description = "description"
 }
 
-variable "lb_name" {
-  type        = string
-  default     = "load-balancer"
-  description = "description"
-}
 
 variable "dbinstance_name" {
   type        = string
@@ -122,9 +132,9 @@ variable "dbinstance_name" {
   description = "name of database instance"
 }
 
-
-variable "authorized_networks" {
+variable "lb_name" {
   type        = string
-  default     = "0.0.0.0/0"
-  description = "authorized networks ip incoming to the database"
+  default     = "load-balancer"
+  description = "description"
 }
+
